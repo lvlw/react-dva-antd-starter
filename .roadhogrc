@@ -1,0 +1,35 @@
+{
+  "entry": "src/index.js",
+  "theme": "./src/theme.js",
+  "extraBabelPlugins": [
+    "transform-runtime",
+    "transform-decorators-legacy",
+    "transform-class-properties",
+    ["import", { "libraryName": "antd", "libraryDirectory": "es", "style": true }]
+  ],
+  "env": {
+    "development": {
+      "extraBabelPlugins": [
+        "dva-hmr",
+        "transform-runtime"
+      ],
+      "proxy": {
+        "/": {
+         "target": "http://10.8.11.210:8000",
+         "changeOrigin": true
+        }
+      }
+    },
+    "production": {
+      "extraBabelPlugins": [
+        "transform-runtime"
+      ],
+      "proxy": {
+        "/": {
+          "target": "http://10.8.11.210:8000",
+          "changeOrigin": true
+        }
+      }
+    }
+  }
+}

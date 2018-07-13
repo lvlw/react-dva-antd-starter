@@ -1,0 +1,45 @@
+@import "~antd/lib/style/themes/default.less";
+
+.logo {
+  height: 64px;
+  position: relative;
+  line-height: 64px;
+  padding-left: (@menu-collapsed-width - 32px) / 2;
+  transition: all .3s;
+  background: #fff;
+  overflow: hidden;
+  img {
+    display: inline-block;
+    vertical-align: middle;
+    height: 32px;
+  }
+  div {
+    display: inline-block;
+    height: 64px;
+    margin-left: 12px;
+    h1 {
+      color: #000;
+      height: 48px;
+      vertical-align: middle;
+      margin: 0;
+      font-size: 20px;
+      font-family: 'Myriad Pro', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      font-weight: 600;
+    }
+    p {
+      text-align: right;
+      height: 12px;
+      line-height: 12px;
+      margin: 0;
+      color: rgba(0, 0, 0, 0.85);
+    }
+  }
+}
+
+.sider {
+  min-height: 100vh;
+  box-shadow: 2px 0 6px rgba(0, 21, 41, .35);
+  position: relative;
+  z-index: 10;
+  background: #fff;
+}
