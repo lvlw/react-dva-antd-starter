@@ -1,5 +1,5 @@
 import React from 'react';
-import { Row, Table, Button, Popconfirm, Switch, Input } from 'antd';
+import { Card, Table, Button, Popconfirm, Switch, Input } from 'antd';
 import styles from '../../common.css';
 import { DEFAULT_PAGE_SIZE } from '../../../utils/constants';
 import UserModal from './UserModal';
@@ -74,6 +74,7 @@ export default class UserTable extends React.Component {
 
   render() {
     const { dispatch, loading, users, city } = this.props;
+    const { currentUser, modalVisible, selectedRowKeys, filter } = this.state;
 
     const columns = [
       {
@@ -167,8 +168,8 @@ export default class UserTable extends React.Component {
     const modalProps = {
       dispatch,
       loading,
-      visible: this.state.modalVisible,
-      currentUser: this.state.currentUser,
+      visible: modalVisible,
+      currentUser,
       city,
       onCancel: () => {
         this.setState({
@@ -180,15 +181,15 @@ export default class UserTable extends React.Component {
 
     return (
       <div>
-        <Row style={{ marginBottom: 16 }}>
+        <Card style={{ marginBottom: 16 }}>
           <div style={{ float: 'left' }}>
             <Popconfirm
               title="确认批量删除?"
               onConfirm={this.handleBatchDelete}
             >
-              <Button disabled={!this.state.selectedRowKeys.length > 0} >批量删除</Button>
+              <Button disabled={!selectedRowKeys.length > 0} >批量删除</Button>
             </Popconfirm>
-            <span style={{ marginLeft: 16 }}>{`共选择了${this.state.selectedRowKeys.length}条`}</span>
+            <span style={{ marginLeft: 16 }}>{`共选择了${selectedRowKeys.length}条`}</span>
             <Search
               style={{ marginLeft: 16, width: 200 }}
               onChange={this.handleFilterChange}
@@ -205,7 +206,7 @@ export default class UserTable extends React.Component {
             />
             <Button type="primary" onClick={this.handleAddUser}>新增用户</Button>
           </div>
-        </Row>
+        </Card>
         <Table
           columns={columns}
           dataSource={users.filter(n => n.name.includes(this.state.filter))}
@@ -213,6 +214,14 @@ export default class UserTable extends React.Component {
           rowKey={record => record.id}
           pagination={{
             pageSize: DEFAULT_PAGE_SIZE,
+          }}
+          rowSelection={{
+            selectedRowKeys,
+            onChange: (keys) => {
+              this.setState({
+                selectedRowKeys: keys,
+              });
+            },
           }}
           bordered
         />
