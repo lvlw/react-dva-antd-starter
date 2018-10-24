@@ -1,8 +1,6 @@
 import React from 'react';
 import { connect } from 'dva';
 import PageContent from '../../../components/PageContent';
-import logo from '../../../images/logo.png';
-import { getRandomBetweenMaxAndMin } from '../../../utils';
 import './index.less';
 
 @connect(({ app, loading }) => ({ app, loading: loading.models.app }))

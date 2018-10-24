@@ -57,12 +57,12 @@ export const getNavData = app => [
         ],
       },
       {
-        name: '配置管理',
+        name: '其他玩意',
         icon: 'setting',
         path: 'config',
         children: [
           {
-            name: '参数管理',
+            name: 'Canvas',
             icon: 'tags-o',
             path: 'paramManager',
             component: dynamicWrapper(app, [], () => import('../routes/Config/Params')),
