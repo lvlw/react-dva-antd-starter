@@ -35,7 +35,7 @@ const getJsonReactNode = (obj, needComma, styles) => {
                 return (
                   <div key={index}>
                     {
-                      getJsonReactNode(item, true, style)
+                      getJsonReactNode(item, index < obj.length - 1, style)
                     }
                   </div>
                 );
@@ -132,7 +132,11 @@ const getJsonReactNode = (obj, needComma, styles) => {
       return <span>{'""'}</span>;
     }
   } else {
-    return <span>{'""'}</span>;
+    return (
+      <span style={{ color: styles.stringColor || '#0B7500', wordWrap: 'break-word' }}>
+        {`"${obj}"${needComma ? ',' : ''}`}
+      </span>
+    );
   }
 };
 // java exception 字符串 格式化显示
