@@ -70,10 +70,29 @@ export const getNavData = app => [
         ],
       },
       {
-        name: '图表展示',
-        icon: 'area-chart',
-        path: 'chart',
-        component: dynamicWrapper(app, ['user'], () => import('../routes/Chart')),
+        name: '数据可视化',
+        icon: 'setting',
+        path: 'charts',
+        children: [
+          {
+            name: 'ReCharts',
+            icon: 'area-chart',
+            path: 'reCharts',
+            component: dynamicWrapper(app, ['user'], () => import('../routes/Chart/ReCharts/index')),
+          },
+          {
+            name: 'ECharts',
+            icon: 'area-chart',
+            path: 'eCharts',
+            component: dynamicWrapper(app, ['user'], () => import('../routes/Chart/ECharts/index')),
+          },
+          {
+            name: 'HighCharts',
+            icon: 'area-chart',
+            path: 'hightCharts',
+            component: dynamicWrapper(app, ['user'], () => import('../routes/Chart/HighCharts/index')),
+          },
+        ],
       },
     ],
   },

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'dva';
 import { Row, Col, Card, Select } from 'antd';
-import PageContent from '../../components/PageContent';
+import PageContent from '../../../components/PageContent/index';
 import HorizontalBarChart from './HorizontalBarChart';
 import LineChart from './LineChart';
 import VerticalBarChart from './VerticalBarChart';
@@ -265,7 +265,7 @@ class Chart extends React.Component {
       ],
     };
     return (
-      <PageContent title="Chart">
+      <PageContent title="ReChart">
         <Row gutter={24} style={{ marginBottom: 16 }}>
           <Col span={8}>
             <Card className={styles.chartBoard}>
