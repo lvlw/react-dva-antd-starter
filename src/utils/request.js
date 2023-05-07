@@ -1,4 +1,5 @@
 import fetch from 'dva/fetch';
+import { store } from '../models/store';
 
 function parseJSON(response) {
   return response.json();
@@ -22,9 +23,14 @@ function checkStatus(response) {
  * @return {object}           An object containing either "data" or "err"
  */
 export default function request(url, options) {
-  return fetch(url, options)
-    .then(checkStatus)
-    .then(parseJSON)
-    .then(data => ({ data }))
-    .catch(err => ({ err }));
+  console.log(store);
+  if (!store.token) {
+    location.hash = '/login';
+  } else {
+    return fetch(url, options)
+      .then(checkStatus)
+      .then(parseJSON)
+      .then(data => ({ data }))
+      .catch(err => ({ err }));
+  }
 }

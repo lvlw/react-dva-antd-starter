@@ -8,8 +8,14 @@ export default class GlobalHeader extends PureComponent {
 
   handleMenuClick = ({ key }) => {
     if (key === 'logout') {
-      // window.location.href = '/logout';
-      alert('logout!');
+      this.props.dispatch({
+        type: 'app/logout',
+        payload: {
+          cb: () => {
+            location.hash = '/login';
+          },
+        },
+      });
     }
   };
   handleCollapse = () => {
